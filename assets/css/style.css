@@ -30,7 +30,7 @@ button.slick-prev.slick-arrow {
     height: 50px;
     width: 50px;
     background-color: transparent;
-    background-image: url(/assets/img/arrowE.png);
+    background-image: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/arrowE.png);
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
@@ -57,7 +57,7 @@ button.slick-next.slick-arrow {
     height: 50px;
     width: 50px;
     background-color: transparent;
-    background-image: url(/assets/img/arrowD.png);
+    background-image: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/arrowD.png);
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
@@ -130,7 +130,7 @@ nav {
 }
 
 main {
-    background: url(/assets/img/fundo2.png) no-repeat;
+    background: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/fundo2.png) no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top center;
@@ -538,7 +538,7 @@ button.slick-prev {
 }
 
 #action-btn {
-    background-image: url(/assets/img/face.png);
+    background-image: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/face.png);
     background-repeat: no-repeat;
     background-size: 60%;
     background-position: right center;
@@ -551,7 +551,7 @@ button.slick-prev {
 }
 
 #action-btnB {
-    background-image: url(/assets/img/insta.png);
+    background-image: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/insta.png);
     background-repeat: no-repeat;
     background-size: 60%;
     background-position: right center;
