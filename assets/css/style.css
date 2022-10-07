@@ -130,7 +130,8 @@ nav {
 }
 
 main {
-    background: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/fundo2.png) no-repeat;
+    background: #03989E;
+    background-image: linear-gradient(30deg, #03989E, #13E4ED);
     background-size: cover;
     background-attachment: fixed;
     background-position: top center;
@@ -160,7 +161,7 @@ main {
 }
 
 #maior {
-    background: #DFE9F5;
+    background: #F6FEFF;
     height: auto;
     margin: 0px 16px 8px 16px;
     border-radius: 12px;
@@ -184,7 +185,7 @@ h1 {
     text-align: center;
     margin: 45px auto auto auto;
     font-family: 'PT Serif', serif;
-    color: #1a72c4;
+    color: #008037;
     font-size: 44px;
 }
 
@@ -430,7 +431,7 @@ textarea {
 }
 
 .botaoB {
-    background-color: #03588C;
+    background-color: #008037;
     font-size: 20px;
     font-family: 'Comfortaa', cursive;
     padding: 8px;
@@ -446,7 +447,7 @@ textarea {
 }
 
 .botaoD {
-    background-color: #03588C;
+    background-color: #008037;
     font-size: 20px;
     font-family: 'Comfortaa', cursive;
     padding: 8px;
@@ -464,7 +465,13 @@ textarea {
 
 .botaoB:hover {
     transition: .3s ease;
-    background-color: #438cb9;
+    background-color: #7ED957;
+    cursor: pointer;
+}
+
+.botaoD:hover {
+    transition: .3s ease;
+    background-color: #7ED957;
     cursor: pointer;
 }
 
