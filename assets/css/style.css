@@ -3,8 +3,12 @@
     padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Kreon&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Kreon&display=swap');
+
 p {
-    font-family: 'Aspal';
+    font-family: 'Allerta Stencil', sans-serif;
 }
 
 p:active :active :visited :link {
@@ -12,7 +16,7 @@ p:active :active :visited :link {
 }
 
 li>p {
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
 }
 
 #sobre {
@@ -84,7 +88,7 @@ a {
     font-size: 28px;
     color: #fff;
     text-decoration: none;
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     transition: 0.3s;
 }
 
@@ -157,7 +161,7 @@ main {
 /* nav */
 
 .maior>b {
-    font-family: 'Noto Sans Symbols 2', sans-serif;
+    font-family: 'Allerta Stencil', sans-serif;
 }
 
 #maior {
@@ -184,14 +188,14 @@ main {
 h1 {
     text-align: center;
     margin: 45px auto auto auto;
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     color: #008037;
     font-size: 44px;
 }
 
 h2 {
     text-align: center;
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     margin: 45px auto 65px auto;
     width: 55%;
     max-width: fit-content;
@@ -268,13 +272,13 @@ h2 {
 
 .maior {
     font-size: 31px;
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     bottom: 40px;
     position: relative;
 }
 
 .menor {
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     font-size: 20px;
     position: relative;
     bottom: 25px;
@@ -368,8 +372,7 @@ textarea {
 
 label {
     font-size: 26px;
-    font-family: 'Rubik', sans-serif;
-    ;
+    font-family: 'Allerta Stencil', sans-serif;
 }
 
 .flexC {
@@ -429,7 +432,7 @@ label {
 textarea {
     width: 100%;
     border-radius: 7px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Allerta Stencil', sans-serif;
     border: none;
     padding: 5px;
 }
@@ -442,7 +445,7 @@ textarea {
 .botaoB {
     background-color: #008037;
     font-size: 20px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Allerta Stencil', sans-serif;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -458,7 +461,7 @@ textarea {
 .botaoD {
     background-color: #008037;
     font-size: 20px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Allerta Stencil', sans-serif;
     padding: 8px;
     width: 135px;
     color: #fff;
@@ -514,7 +517,7 @@ button.slick-prev {
 .sliderB>button {
     background-color: #03588C;
     font-size: 15px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Allerta Stencil', sans-serif;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -652,7 +655,7 @@ button.slick-prev {
 
 .numero {
     color: #1246e0;
-    font-family: 'PT Serif', serif;
+    font-family: 'Allerta Stencil', sans-serif;
     font-size: 20px;
 }
 
