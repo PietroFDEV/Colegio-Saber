@@ -4,7 +4,7 @@
 }
 
 p {
-    font-family: 'Aspal', cursive;
+    font-family: 'Aspal';
 }
 
 p:active :active :visited :link {
@@ -387,34 +387,42 @@ label {
 
 .AA {
     grid-area: a;
+    color: #008037;
 }
 
 .BB {
     grid-area: b;
+    background-color: #d8ffc7;
 }
 
 .CC {
     grid-area: c;
+    color: #008037;
 }
 
 .DD {
     grid-area: d;
+    background-color: #e2fcd7;
 }
 
 .EE {
     grid-area: e;
+    color: #008037;
 }
 
 .FF {
     grid-area: f;
+    background-color: #d8ffc7;
 }
 
 .GG {
     grid-area: g;
+    color: #008037;
 }
 
 .HH {
     grid-area: h;
+    background-color: #e2fcd7;
 }
 
 .flexC>input,
@@ -428,6 +436,7 @@ textarea {
 
 .flexC>label {
     width: 100%;
+
 }
 
 .botaoB {
@@ -578,15 +587,16 @@ button.slick-prev {
 }
 
 .botao {
-    background-color: #1e31dd;
+    background-color: #03989E;
     padding: 28px;
     width: 85px;
-    color: #fff;
+
     border-radius: 0px 32px 32px;
+ 
     display: block;
     top: 50%;
     left: 90%;
-    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.9), 0px 10px 10px rgba(7, 136, 196, 0.18);
+    box-shadow: 1px 3px 10px rgba(3, 152, 158, 0.9), 1px 5px 5px rgba(3, 152, 158, 0.18);
 }
 
 #container {
