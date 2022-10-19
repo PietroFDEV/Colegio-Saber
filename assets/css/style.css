@@ -3,12 +3,10 @@
     padding: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Kreon&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Kreon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Libre+Baskerville&display=swap');
 
 p {
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 p:active :active :visited :link {
@@ -16,7 +14,7 @@ p:active :active :visited :link {
 }
 
 li>p {
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 #sobre {
@@ -88,8 +86,12 @@ a {
     font-size: 28px;
     color: #fff;
     text-decoration: none;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Cinzel', serif;
     transition: 0.3s;
+}
+
+.bVolume{
+ font-size: 15px;
 }
 
 a:hover {
@@ -161,7 +163,7 @@ main {
 /* nav */
 
 .maior>b {
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 #maior {
@@ -181,21 +183,21 @@ main {
     color: #fff;
     text-align: center;
     position: relative;
-    bottom: 150px;
+    bottom: 20px;
     overflow: hidden;
 }
 
 h1 {
     text-align: center;
     margin: 45px auto auto auto;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Cinzel', serif;
     color: #008037;
     font-size: 44px;
 }
 
 h2 {
     text-align: center;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     margin: 45px auto 65px auto;
     width: 55%;
     max-width: fit-content;
@@ -271,15 +273,16 @@ h2 {
 }
 
 .maior {
-    font-size: 31px;
-    font-family: 'Allerta Stencil', sans-serif;
+    margin-top: 4px;
+    font-size: 25px;
+    font-family: 'Cinzel', serif;
     bottom: 40px;
     position: relative;
 }
 
 .menor {
-    font-family: 'Allerta Stencil', sans-serif;
-    font-size: 20px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 25px;
     position: relative;
     bottom: 25px;
 }
@@ -372,7 +375,7 @@ textarea {
 
 label {
     font-size: 26px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 .flexC {
@@ -432,7 +435,7 @@ label {
 textarea {
     width: 100%;
     border-radius: 7px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     border: none;
     padding: 5px;
 }
@@ -444,8 +447,9 @@ textarea {
 
 .botaoB {
     background-color: #008037;
-    font-size: 20px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 18px;
+    font-family: 'Cinzel', serif;
+    align-text: center;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -460,12 +464,13 @@ textarea {
 
 .botaoD {
     background-color: #008037;
-    font-size: 20px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 15px;
+    font-family: 'Cinzel', serif;
     padding: 8px;
     width: 135px;
     color: #fff;
     justify-content: center;
+    align-text: center;
     border: none;
     border-radius: 30px;
     display: block;
@@ -517,7 +522,7 @@ button.slick-prev {
 .sliderB>button {
     background-color: #03588C;
     font-size: 15px;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -655,7 +660,7 @@ button.slick-prev {
 
 .numero {
     color: #1246e0;
-    font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 20px;
 }
 
