@@ -628,6 +628,7 @@ button.slick-prev {
 .flexD {
     display: grid;
     max-width: 80%;
+    padding: 60px;
     margin: auto;
     align-items: center;
     align-content: center;
@@ -643,8 +644,8 @@ button.slick-prev {
     border-radius: 12px;
     border: 1px solid #00569D;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4), 0px 10px 10px rgba(0, 0, 0, 0.18);
-    padding-top: 80px;
-    padding-bottom: 80px;
+
+    display: flex;
     position: relative;
     bottom: 155px;
 }
@@ -652,6 +653,7 @@ button.slick-prev {
 .inteiroB {
     margin: 16px;
     max-width: 350px;
+    min-height: 150px;
 }
 
 .hide {
@@ -724,10 +726,7 @@ button.slick-prev {
         width: 105px;
     }
     #inicio {
-        width: 90%;
-    }
-    .sliderB {
-        top: 60px;
+        width: 45%;
     }
     .flexC {
         margin: 14px;
@@ -773,11 +772,11 @@ button.slick-prev {
     }
     #maior {
         margin: 0px 10px 10px 10px;
-        bottom: 10px;
+        bottom: 55px;
     }
     #maiorB {
         margin: 0px 10px 10px 10px;
-        bottom: 10px;
+        bottom: 55px;
     }
     #final {
         bottom: 10px;
@@ -802,12 +801,12 @@ button.slick-prev {
         right: 0;
         width: 50vw;
         height: 42vh;
-        background: #1246e0;
-        background-image: linear-gradient(30deg, #1246e0, #03258C);
+        background: #03989E;
+        background-image: linear-gradient(30deg, #03989E, #076f73);
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        transform: translateX(100%);
+        transform: translateX(140%);
         transition: transform 0.4s ease-in;
         box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.5), 0px 10px 10px rgba(0, 0, 0, 0.18);
     }
@@ -856,6 +855,12 @@ button.slick-prev {
     }
     a {
         font-size: 14px;
+    }
+    .maior{
+        font-size: 25px;
+    }
+    .menor{
+        font-size: 22px;
     }
 }
 
