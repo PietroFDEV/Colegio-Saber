@@ -3,8 +3,10 @@
     padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Libre+Baskerville&display=swap');
+
 p {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Libre Baskerville', serif;
 }
 
 p:active :active :visited :link {
@@ -12,7 +14,7 @@ p:active :active :visited :link {
 }
 
 li>p {
-    font-family: 'PT Serif', serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 #sobre {
@@ -84,8 +86,12 @@ a {
     font-size: 28px;
     color: #fff;
     text-decoration: none;
-    font-family: 'PT Serif', serif;
+    font-family: 'Cinzel', serif;
     transition: 0.3s;
+}
+
+.bVolume{
+ font-size: 15px;
 }
 
 a:hover {
@@ -117,10 +123,10 @@ nav {
     align-items: center;
     height: 8vh;
     width: 100%;
-    background: #03258C;
+    background: #03989E;
     border-bottom-left-radius: 80px;
-    border-bottom: 1px #003b5f;
-    box-shadow: 0px 7px 15px rgba(0, 33, 139, 0.9), 0px 10px 10px rgba(7, 136, 196, 0.18);
+    border-bottom: 1px #03989E;
+    box-shadow: 0px 5px 9px rgba(4, 162, 169, 1), 0px 10px 10px rgba(4, 162, 169, 0.2);
     z-index: 6;
 }
 
@@ -130,8 +136,10 @@ nav {
 }
 
 main {
-    background: url(https://pietrofdev.github.io/Colegio-Saber/assets/img/fundo2.png) no-repeat;
+    background: #03989E;
+    background-image: linear-gradient(30deg, #03989E, #13E4ED);
     background-size: cover;
+    overflow: hidden;
     background-attachment: fixed;
     background-position: top center;
 }
@@ -156,11 +164,11 @@ main {
 /* nav */
 
 .maior>b {
-    font-family: 'Noto Sans Symbols 2', sans-serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 #maior {
-    background: #DFE9F5;
+    background: #F6FEFF;
     height: auto;
     margin: 0px 16px 8px 16px;
     border-radius: 12px;
@@ -176,21 +184,21 @@ main {
     color: #fff;
     text-align: center;
     position: relative;
-    bottom: 150px;
+    bottom: 20px;
     overflow: hidden;
 }
 
 h1 {
     text-align: center;
     margin: 45px auto auto auto;
-    font-family: 'PT Serif', serif;
-    color: #1a72c4;
+    font-family: 'Cinzel', serif;
+    color: #008037;
     font-size: 44px;
 }
 
 h2 {
     text-align: center;
-    font-family: 'PT Serif', serif;
+    font-family: 'Libre Baskerville', serif;
     margin: 45px auto 65px auto;
     width: 55%;
     max-width: fit-content;
@@ -201,22 +209,22 @@ h2 {
 /* Imagens inicio */
 
 #corA {
-    background-color: #63b4e7;
-    color: #edfa36;
+    background-color: #7ED957;
+    color: #03989E;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
 
 #corB {
-    background-color: #f7ff84;
-    color: #3982af;
+    background-color: #03989E;
+    color: #7ED957;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
 
 #corC {
-    background-color: #63b4e7;
-    color: #edfa36;
+    background-color: #7ED957;
+    color: #03989E;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -266,15 +274,16 @@ h2 {
 }
 
 .maior {
-    font-size: 31px;
-    font-family: 'PT Serif', serif;
+    margin-top: 4px;
+    font-size: 25px;
+    font-family: 'Cinzel', serif;
     bottom: 40px;
     position: relative;
 }
 
 .menor {
-    font-family: 'PT Serif', serif;
-    font-size: 20px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 25px;
     position: relative;
     bottom: 25px;
 }
@@ -367,8 +376,7 @@ textarea {
 
 label {
     font-size: 26px;
-    font-family: 'Rubik', sans-serif;
-    ;
+    font-family: 'Libre Baskerville', serif;
 }
 
 .flexC {
@@ -386,53 +394,63 @@ label {
 
 .AA {
     grid-area: a;
+    color: #008037;
 }
 
 .BB {
     grid-area: b;
+    background-color: #d8ffc7;
 }
 
 .CC {
     grid-area: c;
+    color: #008037;
 }
 
 .DD {
     grid-area: d;
+    background-color: #e2fcd7;
 }
 
 .EE {
     grid-area: e;
+    color: #008037;
 }
 
 .FF {
     grid-area: f;
+    background-color: #d8ffc7;
 }
 
 .GG {
     grid-area: g;
+    color: #008037;
 }
 
 .HH {
     grid-area: h;
+    background-color: #e2fcd7;
 }
 
 .flexC>input,
 textarea {
     width: 100%;
     border-radius: 7px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Libre Baskerville', serif;
     border: none;
     padding: 5px;
 }
 
 .flexC>label {
     width: 100%;
+
 }
 
 .botaoB {
-    background-color: #03588C;
-    font-size: 20px;
-    font-family: 'Comfortaa', cursive;
+    background-color: #008037;
+    font-size: 18px;
+    font-family: 'Cinzel', serif;
+    align-text: center;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -446,13 +464,14 @@ textarea {
 }
 
 .botaoD {
-    background-color: #03588C;
-    font-size: 20px;
-    font-family: 'Comfortaa', cursive;
+    background-color: #008037;
+    font-size: 15px;
+    font-family: 'Cinzel', serif;
     padding: 8px;
     width: 135px;
     color: #fff;
     justify-content: center;
+    align-text: center;
     border: none;
     border-radius: 30px;
     display: block;
@@ -464,7 +483,13 @@ textarea {
 
 .botaoB:hover {
     transition: .3s ease;
-    background-color: #438cb9;
+    background-color: #7ED957;
+    cursor: pointer;
+}
+
+.botaoD:hover {
+    transition: .3s ease;
+    background-color: #7ED957;
     cursor: pointer;
 }
 
@@ -498,7 +523,7 @@ button.slick-prev {
 .sliderB>button {
     background-color: #03588C;
     font-size: 15px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Libre Baskerville', serif;
     padding: 8px;
     width: 85px;
     color: #fff;
@@ -571,15 +596,16 @@ button.slick-prev {
 }
 
 .botao {
-    background-color: #1e31dd;
+    background-color: #03989E;
     padding: 28px;
     width: 85px;
-    color: #fff;
+
     border-radius: 0px 32px 32px;
+ 
     display: block;
     top: 50%;
     left: 90%;
-    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.9), 0px 10px 10px rgba(7, 136, 196, 0.18);
+    box-shadow: 1px 3px 10px rgba(3, 152, 158, 0.9), 1px 5px 5px rgba(3, 152, 158, 0.18);
 }
 
 #container {
@@ -603,6 +629,7 @@ button.slick-prev {
 .flexD {
     display: grid;
     max-width: 80%;
+    padding: 60px;
     margin: auto;
     align-items: center;
     align-content: center;
@@ -618,8 +645,8 @@ button.slick-prev {
     border-radius: 12px;
     border: 1px solid #00569D;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4), 0px 10px 10px rgba(0, 0, 0, 0.18);
-    padding-top: 80px;
-    padding-bottom: 80px;
+
+    display: flex;
     position: relative;
     bottom: 155px;
 }
@@ -627,6 +654,7 @@ button.slick-prev {
 .inteiroB {
     margin: 16px;
     max-width: 350px;
+    min-height: 150px;
 }
 
 .hide {
@@ -635,7 +663,7 @@ button.slick-prev {
 
 .numero {
     color: #1246e0;
-    font-family: 'PT Serif', serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: 20px;
 }
 
@@ -657,7 +685,7 @@ button.slick-prev {
     }
     .inteiroB {
         margin: auto;
-        max-width: 350px;
+        max-width: 400px;
     }
     .flexB {
         position: fixed;
@@ -699,10 +727,7 @@ button.slick-prev {
         width: 105px;
     }
     #inicio {
-        width: 90%;
-    }
-    .sliderB {
-        top: 60px;
+        width: 45%;
     }
     .flexC {
         margin: 14px;
@@ -748,11 +773,11 @@ button.slick-prev {
     }
     #maior {
         margin: 0px 10px 10px 10px;
-        bottom: 10px;
+        bottom: 55px;
     }
     #maiorB {
         margin: 0px 10px 10px 10px;
-        bottom: 10px;
+        bottom: 55px;
     }
     #final {
         bottom: 10px;
@@ -777,12 +802,12 @@ button.slick-prev {
         right: 0;
         width: 50vw;
         height: 42vh;
-        background: #1246e0;
-        background-image: linear-gradient(30deg, #1246e0, #03258C);
+        background: #03989E;
+        background-image: linear-gradient(30deg, #03989E, #076f73);
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        transform: translateX(100%);
+        transform: translateX(140%);
         transition: transform 0.4s ease-in;
         box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.5), 0px 10px 10px rgba(0, 0, 0, 0.18);
     }
@@ -831,6 +856,14 @@ button.slick-prev {
     }
     a {
         font-size: 14px;
+    }
+    .maior{
+        font-size: 25px;
+        max-width: 90%;
+    }
+    .menor{
+        font-size: 22px;
+        max-width: 90%;
     }
 }
 
