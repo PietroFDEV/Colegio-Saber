@@ -15,12 +15,18 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
     <link rel="shortcut icon" href="https://colegiosaber.org/assets/img/pin.png"/>
     <link rel="stylesheet" href="https://colegiosaber.org/assets/fontawesome-free-5.15.4-web/css/all.css"/>
+    <link rel="stylesheet" href="/assets/css/new.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- <style>
+    .hidden { display: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .infra { width: 100%; height: auto; border-radius: 5px; }
+  </style> -->
 </head>
 <header>
-    <nav>
+    <nav id="nav">
         <div class="logo">
             <a href="#comeco">
                 <img id="inicio" src="https://colegiosaber.org/assets/img/logo3.jpg">
@@ -43,7 +49,7 @@
 
 <body>
 
-    <main>
+    <main id="main">
         <div class="flexB">
           <button id="action-btn" class="botao" onclick="openFacebook()"></button>
 
@@ -105,87 +111,35 @@
 
                 <h1><b>INFRAESTRUTURA</b></h1>
 
-                <section class="grid">
-
-                    <div class="A">
-                        <img class="infra" src="assets/img/IF1.jpeg">
-                    </div>
-                    <div class="B">
-                        <img class="infra" src="assets/img/IF2.jpeg">
-                    </div>
-                    <div class="C">
-                        <img class="infra" src="assets/img/IF3.jpeg">
-                    </div>
-                    <div class="D">
-                        <img class="infra" src="assets/img/IF4.jpeg">
-                    </div>
-                    <div class="E">
-                        <img class="infra" src="assets/img/IF5.jpeg">
-                    </div>
-                    <div class="F">
-                        <img class="infra" src="assets/img/IF6.jpeg">
-                    </div>
-                    <div class="G">
-                        <img class="infra" src="assets/img/IF7.jpeg">
-                    </div>
-                    <div class="H">
-                        <img class="infra" src="assets/img/IF8.jpeg">
-                    </div>
-                    <div class="I">
-                        <img class="infra" src="assets/img/IF9.jpeg">
-                    </div>
-
-                </section>
-
+                <section id="gallery" class="grid"></section>
+                <button id="showMoreBtn" class="hidden">Mostrar mais</button>
             </div>
             
-            <h1><b>Galeria</b></h1>
-            <ul class="sliderX">
-              <li>
-                <video controls preload="auto">
-                    <source src="https://colegiosaber.org/assets/img/V1.MOV" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-              </li>
-              <li>
-                <video controls preload="auto">
-                    <source src="https://colegiosaber.org/assets/img/V2.MOV" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-              </li>
-              <li>
-                <video controls preload="auto">
-                    <source src="https://colegiosaber.org/assets/img/V3.MOV" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-              </li>
-              <li><img src="https://colegiosaber.org/assets/img/2.png" alt="Image 1"></li>
-              <li><img src="https://colegiosaber.org/assets/img/3.png" alt="Image 2"></li>
-              <li><img src="https://colegiosaber.org/assets/img/5.png" alt="Image 3"></li>
-              <li><img src="https://colegiosaber.org/assets/img/6.png" alt="Image 4"></li>
-              <li><img src="https://colegiosaber.org/assets/img/7.png" alt="Image 5"></li>
-              <li><img src="https://colegiosaber.org/assets/img/8.png" alt="Image 6"></li>
-              <li><img src="https://colegiosaber.org/assets/img/10.png" alt="Image 7"></li>
-              <li><img src="https://colegiosaber.org/assets/img/11.png" alt="Image 8"></li>
-              <li><img src="https://colegiosaber.org/assets/img/13.png" alt="Image 9"></li>
-              <li><img src="https://colegiosaber.org/assets/img/14.png" alt="Image 10"></li>
-              <li><img src="https://colegiosaber.org/assets/img/15.png" alt="Image 11"></li>
-              <li><img src="https://colegiosaber.org/assets/img/17.png" alt="Image 12"></li>
-              <li><img src="https://colegiosaber.org/assets/img/18.png" alt="Image 13"></li>
-            </ul>
+            <div id="gallery-loader">
+              <p>Carregando galeria...</p>
+              <div class="spinner"></div>
+            </div>
 
-            <ul class="sliderY">
+            <section id="gallery-section" class="gallery--hidden">
+              <h1><b>Galeria</b></h1>
+              <ul class="sliderX">
                 <li>
-                  <img src="https://colegiosaber.org/assets/img/V1.jpg" alt="Video 1">
-                  <i class="fas fa-play-circle play-button"></i>
+                  <video controls preload="auto">
+                      <source src="https://colegiosaber.org/assets/img/V1.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
                 </li>
                 <li>
-                  <img src="https://colegiosaber.org/assets/img/V2.jpg" alt="Video 2">
-                  <i class="fas fa-play-circle play-button"></i>
+                  <video controls preload="auto">
+                      <source src="https://colegiosaber.org/assets/img/V2.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
                 </li>
                 <li>
-                  <img src="https://colegiosaber.org/assets/img/V3.jpg" alt="Video 3">
-                  <i class="fas fa-play-circle play-button"></i>
+                  <video controls preload="auto">
+                      <source src="https://colegiosaber.org/assets/img/V3.MOV" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
                 </li>
                 <li><img src="https://colegiosaber.org/assets/img/2.png" alt="Image 1"></li>
                 <li><img src="https://colegiosaber.org/assets/img/3.png" alt="Image 2"></li>
@@ -200,8 +154,36 @@
                 <li><img src="https://colegiosaber.org/assets/img/15.png" alt="Image 11"></li>
                 <li><img src="https://colegiosaber.org/assets/img/17.png" alt="Image 12"></li>
                 <li><img src="https://colegiosaber.org/assets/img/18.png" alt="Image 13"></li>
-            </ul>
+              </ul>
 
+              <ul class="sliderY">
+                  <li>
+                    <img src="https://colegiosaber.org/assets/img/V1.jpg" alt="Video 1">
+                    <i class="fas fa-play-circle play-button"></i>
+                  </li>
+                  <li>
+                    <img src="https://colegiosaber.org/assets/img/V2.jpg" alt="Video 2">
+                    <i class="fas fa-play-circle play-button"></i>
+                  </li>
+                  <li>
+                    <img src="https://colegiosaber.org/assets/img/V3.jpg" alt="Video 3">
+                    <i class="fas fa-play-circle play-button"></i>
+                  </li>
+                  <li><img src="https://colegiosaber.org/assets/img/2.png" alt="Image 1"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/3.png" alt="Image 2"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/5.png" alt="Image 3"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/6.png" alt="Image 4"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/7.png" alt="Image 5"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/8.png" alt="Image 6"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/10.png" alt="Image 7"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/11.png" alt="Image 8"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/13.png" alt="Image 9"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/14.png" alt="Image 10"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/15.png" alt="Image 11"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/17.png" alt="Image 12"></li>
+                  <li><img src="https://colegiosaber.org/assets/img/18.png" alt="Image 13"></li>
+              </ul>
+            </section>
             <h1 id="redes"><b>Envie um e-mail</b></h1>
 
             <div>
@@ -269,85 +251,71 @@
             </div>
         </footer>
 
+        <section id="facebook-reviews" style="padding: 2rem;">
+  <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">O que dizem sobre nós</h2>
+  
+  <div class="sliderY">
+    
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Feliza.kmick%2Fposts%2F10207257105023240&show_text=true&width=500"
+              width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fyago.guilherme.9%2Fposts%2F3550885974951134&show_text=true&width=500" width="500" height="107" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Flscorci%2Fposts%2F3837733086242702&show_text=true&width=500"
+         width="500" height="169" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"              width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Flscorci%2Fposts%2F3837733086242702&show_text=true&width=500" width="500" height="169" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJulianoautoshop%2Fposts%2F2929928477120267&show_text=true&width=500" width="500" height="107" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div class="review">
+      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpaulo.pimentel.507%2Fposts%2F2060422690635571&show_text=true&width=500" width="500" height="250" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="false" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      width="100%" height="350" style="border:none;overflow:hidden"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+  </div>
+</section>
+
 
 
         <p id="final"><b>FEITO COM 💙 COLEGIO SABER</b></p>
+        
     </main>
+    <div id="modal" class="hidden">
+      <div>
+        <button id="closeModal" style="margin-bottom: 10px;">Close</button>
+        <div id="modalContent" class="grid"></div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script type="text/javascript" src="https://colegiosaber.org/assets/js/events.js"></script>
-    <script type="text/javascript">
-        $('.sliderB').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            speed: 1000,
-            autoplay: true,
-            autoplaySpeed: 2500,
-        });
-        
-        $('.sliderX').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.sliderY'
-        });
-
-        $('.sliderY').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.sliderX',
-            centerMode: true,
-            focusOnSelect: true,
-            responsive: [
-              {
-                breakpoint: 999,
-                settings: {
-                  slidesToShow: 1
-                }
-              }
-            ]
-        });
-
-        function adjustSliderXHeight() {
-            var maxHeight = 0;
-
-            $('.sliderX .slick-slide.slick-current').each(function() {
-                var slideHeight = $(this).outerHeight();
-                if (slideHeight > maxHeight) {
-                    maxHeight = slideHeight;
-                }
-            });
-
-            $('.sliderX .slick-list').height(maxHeight);
-        }
-        
-        $('.sliderX').on('init reInit afterChange', function(event, slick) {
-            adjustSliderXHeight();
-        });
-        
-        function openFacebook() {
-          window.open('https://www.facebook.com/ColegioSaberCuritiba', '_blank');
-        }
-
-        function openInstagram() {
-          window.open('https://www.instagram.com/colegiosabercuritiba/', '_blank');
-        }
-
-        function openWhatsApp() {
-          window.open('https://wa.me/554195098043?text=Oi,%20tem%20interesse%20em%20ter%20mais%20informações%20do%20Colégio%20Saber?', '_blank');
-        }
-        
-        function openWhatsAppRegistration(phoneNumber, isMatricula) {
-          if(isMatricula){
-            window.open(`https://wa.me/${phoneNumber}?text=Olá!%20Entre%20em%20contato%20para%20realizar%20a%20matrícula!`, '_blank');
-          }
-          else {
-            window.open(`https://wa.me/${phoneNumber}?text=Olá!%20Entre%20em%20contato%20para%20realizar%20a%20rematrícula!`, '_blank');
-          }
-        }
-    </script>
+    <script src="/assets/js/main.js" defer></script>
 </body>
 
 </html>
