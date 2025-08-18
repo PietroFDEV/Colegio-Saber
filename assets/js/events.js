@@ -150,7 +150,7 @@ class ModernGallery {
         try {
             const response = await fetch('get-images.php');
             const images = await response.json();
-            debugger
+            
             this.renderGallery(images);
         } catch (error) {
             console.error('Error loading images:', error);
@@ -162,7 +162,7 @@ class ModernGallery {
         if (!this.gallery) return;
         
         const isMobile = window.innerWidth <= 768;
-        const visibleCount = isMobile ? 6 : 9;
+        const visibleCount = isMobile ? 6 : 12;
         
         // Clear existing content
         this.gallery.innerHTML = '';

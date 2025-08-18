@@ -191,6 +191,7 @@
                 </div>
             </div>
         </section>
+        
 
         <!-- Galeria Section -->
         <section class="galeria-section">
