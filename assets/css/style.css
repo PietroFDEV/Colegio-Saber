@@ -172,6 +172,9 @@ p {
 }
 
 .nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
@@ -180,6 +183,10 @@ p {
     border-radius: var(--radius-sm);
     transition: all var(--transition-normal);
     position: relative;
+}
+
+.nav-link-icon {
+    display: none;
 }
 
 .nav-link::after {
@@ -295,6 +302,9 @@ p {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-xl);
+    min-height: 400px;
+    /* Skeleton background shown while the carousel is loading/initializing */
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
 }
 
 .hero-slider img {
@@ -302,6 +312,60 @@ p {
     height: 400px;
     object-fit: cover;
     border-radius: var(--radius-lg);
+}
+
+/* ===== FOUC / FLASH-OF-UNSTYLED-CAROUSEL FIX =====
+   Applied to .hero-slider, .gallery-main and .gallery-thumbnails.
+   Before Slick finishes initializing, the <ul> of <li> slides would
+   otherwise render as one long stacked column of full-size images,
+   which looks broken on slower connections. This keeps it hidden
+   (showing a small spinner + colored skeleton instead) and only the
+   first slide visible, until JS adds the "is-ready" class. */
+.fade-slider-wrap {
+    position: relative;
+}
+
+.fade-slider-wrap > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fade-slider-wrap.is-ready > ul {
+    opacity: 1;
+}
+
+.fade-slider-wrap:not(.is-ready) > ul > li {
+    display: none;
+}
+
+.fade-slider-wrap:not(.is-ready) > ul > li:first-child {
+    display: block;
+}
+
+.fade-slider-wrap .slider-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid rgba(255, 255, 255, 0.35);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+    z-index: 1;
+}
+
+.fade-slider-wrap.is-ready .slider-loader {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* ===== BUTTONS ===== */
@@ -344,7 +408,7 @@ p {
     box-shadow: var(--shadow-md);
 }
 
-.btn-primary:hover,{
+.btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -386,6 +450,11 @@ p {
 
 .btn-full {
     width: 100%;
+}
+
+.btn-sm {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
 }
 
 /* ===== SOCIAL FLOATING BUTTONS ===== */
@@ -595,6 +664,8 @@ p {
     box-shadow: var(--shadow-md);
     transition: all var(--transition-normal);
     transform: scale(0.9);
+    background: var(--white);
+    min-height: 180px;
 }
 
 .gallery-item.animate-in {
@@ -626,6 +697,10 @@ p {
 
 .gallery-main {
     margin-bottom: var(--spacing-lg);
+    min-height: 320px;
+    background: var(--light-gray);
+    border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .gallery-main img,
@@ -641,6 +716,8 @@ p {
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
+    overflow: hidden;
+    min-height: 100px;
 }
 
 .gallery-thumbnails img {
@@ -664,6 +741,86 @@ p {
     font-size: 2rem;
     color: var(--white);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== VIDEO CARDS (Galeria) =====
+   Custom poster + play button on top of the native <video>, so a
+   thumbnail always shows instead of an empty controls bar, plus a
+   caption/CTA inviting the visitor to get in touch. */
+.video-card {
+    position: relative;
+    background: var(--black);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.video-card video {
+    width: 100%;
+    max-height: 500px;
+    display: block;
+    background: var(--black);
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    background: rgba(3, 152, 158, 0.85);
+    color: var(--white);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+}
+
+.video-play-btn:hover {
+    background: var(--primary-color);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-card.is-playing .video-play-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-card.video-error::after {
+    content: 'Não foi possível carregar este vídeo. Tente novamente mais tarde.';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--white);
+    padding: var(--spacing-sm);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.video-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.video-cta p {
+    margin: 0;
+    color: var(--white);
+    font-weight: 500;
 }
 
 /* ===== CONTATO SECTION ===== */
@@ -860,8 +1017,10 @@ p {
     background: var(--white);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 95vw;
+    max-width: 1400px;
+    height: 92vh;
+    max-height: 92vh;
     overflow-y: auto;
     position: relative;
 }
@@ -878,6 +1037,7 @@ p {
     border-radius: 50%;
     cursor: pointer;
     transition: all var(--transition-normal);
+    z-index: 5;
 }
 
 .modal-close:hover {
@@ -887,17 +1047,18 @@ p {
 
 .modal-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
 }
 
 .modal-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-radius: var(--radius-sm);
     transition: transform var(--transition-normal);
+    background: var(--light-gray);
 }
 
 .modal-image:hover {
@@ -934,28 +1095,122 @@ p {
 
 @media (max-width: 768px) {
     .nav-menu {
-        position: fixed;
+        /* "absolute" (anchored to the fixed .header) instead of "fixed":
+           when the header is given a translateY() to hide on scroll, it
+           becomes a new containing block for any fixed-position children,
+           which made this menu jump around / vanish on mobile. Anchoring
+           it with position:absolute to the header avoids that entirely. */
+        display: block;
+        position: absolute;
         top: 100%;
         left: 0;
         right: 0;
+        width: 100%;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
         background: var(--primary-color);
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
         transform: translateY(-100%);
-        transition: transform var(--transition-normal);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
         box-shadow: var(--shadow-lg);
+        z-index: 999;
     }
     
     .nav-menu.active {
         transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--transition-normal), visibility var(--transition-normal);
+        z-index: 998;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
     
     .nav-list {
+        display: flex;
         flex-direction: column;
-        gap: var(--spacing-md);
+        width: 100%;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-item {
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        width: 100%;
+        padding: var(--spacing-md) var(--spacing-xs);
+        font-size: 1.15rem;
+        border-radius: 0;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        font-size: 1.05rem;
+        color: var(--secondary-color);
+        flex-shrink: 0;
+    }
+
+    .nav-item-cta {
+        border-bottom: none;
+        margin-top: var(--spacing-md);
+    }
+
+    .nav-link-cta {
+        background: var(--secondary-color);
+        color: var(--primary-color);
+        font-weight: 700;
+        border-radius: var(--radius-md);
+        justify-content: center;
+        box-shadow: var(--shadow-md);
+    }
+
+    .nav-link-cta .nav-link-icon {
+        color: var(--primary-color);
+    }
+
+    .nav-link-cta:hover {
+        color: var(--primary-color);
+        transform: none;
+        opacity: 0.9;
     }
     
     .nav-toggle {
         display: flex;
+        position: relative;
+        z-index: 1001;
     }
     
     .hero {
@@ -990,6 +1245,37 @@ p {
     .section-title::after {
         width: 60px;
     }
+
+    .modal-content {
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal {
+        padding: 0;
+    }
+
+    .modal-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    .modal-image {
+        height: 150px;
+    }
+
+    .video-play-btn {
+        width: 56px;
+        height: 56px;
+        font-size: 1.2rem;
+    }
+
+    .video-cta {
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1020,7 +1306,7 @@ p {
     }
     
     .modal-gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -1135,16 +1421,6 @@ p {
 .slick-prev:hover:before,
 .slick-next:hover:before {
     transform: translate(-50%, -50%) scale(1);
-}
-
-/* Hero slider specific styling */
-.hero-slider {
-    position: relative;
-}
-
-/* Specific gallery container styling */
-.gallery-thumbnails {
-    position: relative;
 }
 
 /* ===== ACCESSIBILITY ===== */
