@@ -4,6 +4,7 @@ class ModernNavigation {
         this.header = document.getElementById('header');
         this.navToggle = document.getElementById('nav-toggle');
         this.navMenu = document.getElementById('nav-menu');
+        this.navOverlay = document.getElementById('nav-overlay');
         this.navLinks = document.querySelectorAll('.nav-link');
         this.currentSection = 'home';
         
@@ -20,6 +21,17 @@ class ModernNavigation {
         // Mobile menu toggle
         if (this.navToggle) {
             this.navToggle.addEventListener('click', () => this.toggleMobileMenu());
+            this.navToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleMobileMenu();
+                }
+            });
+        }
+
+        // Tapping the dimmed backdrop closes the menu
+        if (this.navOverlay) {
+            this.navOverlay.addEventListener('click', () => this.closeMobileMenu());
         }
 
         // Close mobile menu when clicking on links
@@ -30,6 +42,14 @@ class ModernNavigation {
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!this.navMenu.contains(e.target) && !this.navToggle.contains(e.target)) {
+                this.closeMobileMenu();
+            }
+        });
+
+        // If the viewport grows back to desktop size while the mobile
+        // menu is open, make sure it doesn't stay stuck open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
                 this.closeMobileMenu();
             }
         });
@@ -63,6 +83,15 @@ class ModernNavigation {
                 this.header.classList.add('scrolled');
             } else {
                 this.header.classList.remove('scrolled');
+            }
+
+            // Keep the header (and therefore the mobile menu, which is
+            // anchored to it) visible while the mobile menu is open,
+            // otherwise scrolling would hide both at once.
+            if (this.navMenu.classList.contains('active')) {
+                this.header.style.transform = 'translateY(0)';
+                lastScrollTop = scrollTop;
+                return;
             }
             
             // Hide/show header on scroll
@@ -104,10 +133,20 @@ class ModernNavigation {
     toggleMobileMenu() {
         this.navMenu.classList.toggle('active');
         this.navToggle.classList.toggle('active');
+
+        const isOpen = this.navMenu.classList.contains('active');
+
+        if (this.navOverlay) {
+            this.navOverlay.classList.toggle('active', isOpen);
+        }
+        this.navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+        // Lock background scroll while the mobile menu is open
+        document.body.style.overflow = isOpen ? 'hidden' : '';
         
         // Animate hamburger menu
         const bars = this.navToggle.querySelectorAll('.bar');
-        if (this.navMenu.classList.contains('active')) {
+        if (isOpen) {
             bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
             bars[1].style.opacity = '0';
             bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
@@ -121,6 +160,11 @@ class ModernNavigation {
     closeMobileMenu() {
         this.navMenu.classList.remove('active');
         this.navToggle.classList.remove('active');
+        if (this.navOverlay) {
+            this.navOverlay.classList.remove('active');
+        }
+        this.navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
         
         const bars = this.navToggle.querySelectorAll('.bar');
         bars[0].style.transform = 'none';
@@ -137,6 +181,8 @@ class ModernGallery {
         this.modalContent = document.getElementById('modalContent');
         this.showMoreBtn = document.getElementById('showMoreBtn');
         this.closeModal = document.getElementById('closeModal');
+        this.allImages = [];
+        this.modalBuilt = false;
         
         this.init();
     }
@@ -150,6 +196,7 @@ class ModernGallery {
         try {
             const response = await fetch('get-images.php');
             const images = await response.json();
+            this.allImages = images;
             
             this.renderGallery(images);
         } catch (error) {
@@ -173,10 +220,12 @@ class ModernGallery {
             this.gallery.appendChild(galleryItem);
         });
         
-        // Show "show more" button if there are more images
+        // Show "show more" button if there are more images.
+        // The full-resolution modal gallery is now only built the first
+        // time the user actually opens it (see buildModalContent), instead
+        // of eagerly downloading every photo on page load.
         if (images.length > visibleCount) {
             this.showMoreBtn.classList.remove('hidden');
-            this.prepareModalContent(images);
         }
     }
 
@@ -188,6 +237,7 @@ class ModernGallery {
         img.src = src;
         img.alt = `Infraestrutura ${index + 1}`;
         img.loading = 'lazy';
+        img.decoding = 'async';
         
         // Add click event to open modal
         div.addEventListener('click', () => this.openModal());
@@ -196,18 +246,24 @@ class ModernGallery {
         return div;
     }
 
-    prepareModalContent(images) {
-        if (!this.modalContent) return;
-        
+    buildModalContent() {
+        if (this.modalBuilt || !this.modalContent) return;
+
         this.modalContent.innerHTML = '';
-        
-        images.forEach((src, i) => {
+
+        this.allImages.forEach((src, i) => {
             const img = document.createElement('img');
             img.src = src;
             img.alt = `Infraestrutura ${i + 1}`;
             img.className = 'modal-image';
+            // Native lazy loading: only photos scrolled into view inside
+            // the modal get downloaded, instead of all of them at once.
+            img.loading = 'lazy';
+            img.decoding = 'async';
             this.modalContent.appendChild(img);
         });
+
+        this.modalBuilt = true;
     }
 
     setupModalEvents() {
@@ -232,6 +288,9 @@ class ModernGallery {
     }
 
     openModal() {
+        // Build the full photo grid the first time the modal is opened
+        this.buildModalContent();
+
         this.modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
         
@@ -288,6 +347,8 @@ class ModernSlider {
     }
 
     initializeHeroSlider() {
+        const wrap = document.querySelector('.hero-slider');
+
         if (typeof $ !== 'undefined' && $('.sliderB').length) {
             try {
                 // Destroy existing slider if it exists
@@ -295,37 +356,49 @@ class ModernSlider {
                     $('.sliderB').slick('unslick');
                 }
 
-                $('.sliderB').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    speed: 1000,
-                    autoplay: true,
-                    autoplaySpeed: 2500,
-                    fade: true,
-                    cssEase: 'linear',
-                    arrows: true,
-                    dots: false,
-                    pauseOnHover: true,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                arrows: false
+                $('.sliderB')
+                    .on('init', () => {
+                        // Reveal the carousel only once Slick has taken over,
+                        // so visitors never see the raw stacked image list
+                        if (wrap) wrap.classList.add('is-ready');
+                    })
+                    .slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        speed: 1000,
+                        autoplay: true,
+                        autoplaySpeed: 2500,
+                        fade: true,
+                        cssEase: 'linear',
+                        arrows: true,
+                        dots: false,
+                        pauseOnHover: true,
+                        responsive: [
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    arrows: false
+                                }
                             }
-                        }
-                    ]
-                });
+                        ]
+                    });
                 console.log('Hero slider initialized successfully');
             } catch (error) {
                 console.error('Error initializing hero slider:', error);
+                // Don't leave the images hidden forever if Slick fails
+                if (wrap) wrap.classList.add('is-ready');
             }
         } else {
             console.log('jQuery not available or sliderB not found');
+            if (wrap) wrap.classList.add('is-ready');
         }
     }
 
     initializeGallerySliders() {
+        const mainWrap = document.querySelector('.gallery-main');
+        const thumbWrap = document.querySelector('.gallery-thumbnails');
+
         if (typeof $ !== 'undefined') {
             // Main gallery slider
             if ($('.sliderX').length) {
@@ -334,15 +407,29 @@ class ModernSlider {
                     $('.sliderX').slick('unslick');
                 }
 
-                $('.sliderX').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    dots: false,
-                    fade: true,
-                    asNavFor: '.sliderY',
-                    adaptiveHeight: true
+                $('.sliderX')
+                    .on('init', () => {
+                        if (mainWrap) mainWrap.classList.add('is-ready');
+                    })
+                    .slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        dots: false,
+                        fade: true,
+                        asNavFor: '.sliderY',
+                        adaptiveHeight: true
+                    });
+
+                // Pause every video whenever the slide changes, so a
+                // video doesn't keep playing audio off-screen
+                $('.sliderX').on('beforeChange', () => {
+                    document.querySelectorAll('.video-card video').forEach(video => {
+                        if (!video.paused) video.pause();
+                    });
                 });
+            } else if (mainWrap) {
+                mainWrap.classList.add('is-ready');
             }
 
             // Thumbnail slider
@@ -352,32 +439,41 @@ class ModernSlider {
                     $('.sliderY').slick('unslick');
                 }
 
-                $('.sliderY').slick({
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    arrows: true,
-                    dots: false,
-                    asNavFor: '.sliderX',
-                    centerMode: true,
-                    focusOnSelect: true,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 3,
-                                arrows: true
+                $('.sliderY')
+                    .on('init', () => {
+                        if (thumbWrap) thumbWrap.classList.add('is-ready');
+                    })
+                    .slick({
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        arrows: true,
+                        dots: false,
+                        asNavFor: '.sliderX',
+                        centerMode: true,
+                        focusOnSelect: true,
+                        responsive: [
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 3,
+                                    arrows: true
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 1,
+                                    arrows: true
+                                }
                             }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 1,
-                                arrows: true
-                            }
-                        }
-                    ]
-                });
+                        ]
+                    });
+            } else if (thumbWrap) {
+                thumbWrap.classList.add('is-ready');
             }
+        } else {
+            if (mainWrap) mainWrap.classList.add('is-ready');
+            if (thumbWrap) thumbWrap.classList.add('is-ready');
         }
     }
 
@@ -395,6 +491,54 @@ class ModernSlider {
                 $('.sliderB').slick('slickPrev');
             } else if (e.key === 'ArrowRight') {
                 $('.sliderB').slick('slickNext');
+            }
+        });
+    }
+}
+
+// ===== VIDEO CARD INTERACTIONS (Galeria) =====
+// Adds a poster-based play button on top of each <video>, so visitors
+// always see a thumbnail instead of an empty controls bar, and makes
+// sure only one video plays at a time.
+class VideoCardManager {
+    constructor() {
+        this.cards = document.querySelectorAll('.video-card');
+        this.init();
+    }
+
+    init() {
+        this.cards.forEach(card => {
+            const video = card.querySelector('video');
+            const playBtn = card.querySelector('.video-play-btn');
+            if (!video || !playBtn) return;
+
+            playBtn.addEventListener('click', () => {
+                this.pauseOtherVideos(video);
+                video.play().catch(() => {
+                    // Autoplay/play restrictions or a load error - surface it
+                    card.classList.add('video-error');
+                });
+            });
+
+            video.addEventListener('play', () => card.classList.add('is-playing'));
+            video.addEventListener('pause', () => card.classList.remove('is-playing'));
+            video.addEventListener('ended', () => card.classList.remove('is-playing'));
+
+            // If the video can't be decoded/loaded (e.g. an unsupported
+            // format), keep the poster + play button visible instead of
+            // showing a broken player with no image.
+            video.addEventListener('error', () => {
+                card.classList.add('video-error');
+                card.classList.remove('is-playing');
+            });
+        });
+    }
+
+    pauseOtherVideos(currentVideo) {
+        this.cards.forEach(card => {
+            const video = card.querySelector('video');
+            if (video && video !== currentVideo) {
+                video.pause();
             }
         });
     }
@@ -722,6 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ModernNavigation();
     new ModernGallery();
     new ModernSlider();
+    new VideoCardManager();
     new SocialMediaManager();
     new WhatsAppRegistration();
     new FormEnhancements();
@@ -753,4 +898,3 @@ function openWhatsAppRegistration(phoneNumber, isMatricula) {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank', 'noopener,noreferrer');
 }
-

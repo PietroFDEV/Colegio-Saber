@@ -41,21 +41,21 @@
                 <div class="nav-menu" id="nav-menu">
                     <ul class="nav-list">
                         <li class="nav-item">
-                            <a href="#home" class="nav-link" data-section="home">Início</a>
+                            <a href="#home" class="nav-link" data-section="home"><i class="fas fa-home nav-link-icon" aria-hidden="true"></i><span>Início</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#sobre" class="nav-link" data-section="sobre">Sobre</a>
+                            <a href="#sobre" class="nav-link" data-section="sobre"><i class="fas fa-info-circle nav-link-icon" aria-hidden="true"></i><span>Sobre</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#infraestrutura" class="nav-link" data-section="infraestrutura">Infraestrutura</a>
+                            <a href="#infraestrutura" class="nav-link" data-section="infraestrutura"><i class="fas fa-building nav-link-icon" aria-hidden="true"></i><span>Infraestrutura</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#contato" class="nav-link" data-section="contato">Contato</a>
+                        <li class="nav-item nav-item-cta">
+                            <a href="#contato" class="nav-link nav-link-cta" data-section="contato"><i class="fas fa-comment-dots nav-link-icon" aria-hidden="true"></i><span>Contato</span></a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="nav-toggle" id="nav-toggle" aria-label="Menu de navegação">
+                <div class="nav-toggle" id="nav-toggle" aria-label="Menu de navegação" role="button" tabindex="0" aria-expanded="false" aria-controls="nav-menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -63,6 +63,7 @@
             </div>
         </nav>
     </header>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
     <!-- Main Content -->
     <main class="main" id="main">
@@ -84,13 +85,17 @@
                 </div>
                 
                 <!-- Hero Slider -->
-                <div class="hero-slider">
+                <!-- "fade-slider-wrap" hides everything but the first slide and shows a
+                     loading spinner until Slick has fully initialized, so visitors never
+                     see the raw, stacked, oversized list of images before the carousel kicks in -->
+                <div class="hero-slider fade-slider-wrap">
+                    <span class="slider-loader" aria-hidden="true"></span>
                     <ul class="sliderB">
-                        <li><img src="assets/img/1.png" alt="Colégio Saber - Imagem 1"></li>
-                        <li><img src="assets/img/4.png" alt="Colégio Saber - Imagem 2"></li>
-                        <li><img src="assets/img/9.png" alt="Colégio Saber - Imagem 3"></li>
-                        <li><img src="assets/img/12.png" alt="Colégio Saber - Imagem 4"></li>
-                        <li><img src="assets/img/16.png" alt="Colégio Saber - Imagem 5"></li>
+                        <li><img src="assets/img/1.png" alt="Colégio Saber - Imagem 1" decoding="async"></li>
+                        <li><img src="assets/img/4.png" alt="Colégio Saber - Imagem 2" decoding="async"></li>
+                        <li><img src="assets/img/9.png" alt="Colégio Saber - Imagem 3" decoding="async"></li>
+                        <li><img src="assets/img/12.png" alt="Colégio Saber - Imagem 4" decoding="async"></li>
+                        <li><img src="assets/img/16.png" alt="Colégio Saber - Imagem 5" decoding="async"></li>
                     </ul>
                 </div>
             </div>
@@ -156,7 +161,7 @@
                 <div class="services-grid">
                     <div class="service-card service-card--primary">
                         <div class="service-icon">
-                            <img src="assets/img/notebook.png" alt="Ensino Médio Regular">
+                            <img src="assets/img/notebook.png" alt="Ensino Médio Regular" loading="lazy" decoding="async">
                         </div>
                         <h3>Ensino Médio Regular</h3>
                         <p>Não somos EAD ou Colégio online, somos um Colégio de INCLUSÃO e presencial</p>
@@ -164,7 +169,7 @@
                     
                     <div class="service-card service-card--secondary">
                         <div class="service-icon">
-                            <img src="assets/img/trophy.png" alt="Programa de Inclusão">
+                            <img src="assets/img/trophy.png" alt="Programa de Inclusão" loading="lazy" decoding="async">
                         </div>
                         <h3>Programa de INCLUSÃO para Jovens Atletas</h3>
                         <p>Respeitamos o aluno atleta e suas necessidades</p>
@@ -172,7 +177,7 @@
                     
                     <div class="service-card service-card--primary">
                         <div class="service-icon">
-                            <img src="assets/img/help.png" alt="Soluções Educacionais">
+                            <img src="assets/img/help.png" alt="Soluções Educacionais" loading="lazy" decoding="async">
                         </div>
                         <h3>Soluções Educacionais</h3>
                         <p>Somos um Colégio de INCLUSÃO</p>
@@ -199,70 +204,102 @@
                 <h2 class="section-title">Galeria</h2>
                 
                 <!-- Main Gallery Slider -->
-                <div class="gallery-main">
+                <div class="gallery-main fade-slider-wrap">
+                    <span class="slider-loader" aria-hidden="true"></span>
                     <ul class="sliderX">
                         <li>
-                            <video controls preload="auto" class="gallery-video">
-                                <source src="assets/img/V1.MOV" type="video/mp4">
-                                Seu navegador não suporta o elemento de vídeo.
-                            </video>
+                            <div class="video-card" data-video="1">
+                                <video class="gallery-video" preload="metadata" poster="assets/img/V1.jpg" playsinline controls>
+                                    <source src="assets/img/V1.mp4" type="video/mp4">
+                                    <source src="assets/img/V1.MOV">
+                                    Seu navegador não suporta o elemento de vídeo.
+                                </video>
+                                <button type="button" class="video-play-btn" aria-label="Reproduzir vídeo">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                            <div class="video-cta">
+                                <p>Quer conhecer de perto o Colégio Saber?</p>
+                                <a href="#contato" class="btn btn-whatsapp btn-sm">Fale com a gente</a>
+                            </div>
                         </li>
                         <li>
-                            <video controls preload="auto" class="gallery-video">
-                                <source src="assets/img/V2.MOV" type="video/mp4">
-                                Seu navegador não suporta o elemento de vídeo.
-                            </video>
+                            <div class="video-card" data-video="2">
+                                <video class="gallery-video" preload="metadata" poster="assets/img/V2.jpg" playsinline controls>
+                                    <source src="assets/img/V2.mp4" type="video/mp4">
+                                    <source src="assets/img/V2.MOV">
+                                    Seu navegador não suporta o elemento de vídeo.
+                                </video>
+                                <button type="button" class="video-play-btn" aria-label="Reproduzir vídeo">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                            <div class="video-cta">
+                                <p>Veja um pouco do dia a dia dos nossos alunos</p>
+                                <a href="#contato" class="btn btn-whatsapp btn-sm">Fale com a gente</a>
+                            </div>
                         </li>
                         <li>
-                            <video controls preload="auto" class="gallery-video">
-                                <source src="assets/img/V3.MOV" type="video/mp4">
-                                Seu navegador não suporta o elemento de vídeo.
-                            </video>
+                            <div class="video-card" data-video="3">
+                                <video class="gallery-video" preload="metadata" poster="assets/img/V3.jpg" playsinline controls>
+                                    <source src="assets/img/V3.mp4" type="video/mp4">
+                                    <source src="assets/img/V3.MOV">
+                                    Seu navegador não suporta o elemento de vídeo.
+                                </video>
+                                <button type="button" class="video-play-btn" aria-label="Reproduzir vídeo">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                            <div class="video-cta">
+                                <p>Agende uma visita e conheça nossa estrutura</p>
+                                <a href="#contato" class="btn btn-whatsapp btn-sm">Fale com a gente</a>
+                            </div>
                         </li>
-                        <li><img src="assets/img/2.png" alt="Galeria - Imagem 1" class="gallery-image"></li>
-                        <li><img src="assets/img/3.png" alt="Galeria - Imagem 2" class="gallery-image"></li>
-                        <li><img src="assets/img/5.png" alt="Galeria - Imagem 3" class="gallery-image"></li>
-                        <li><img src="assets/img/6.png" alt="Galeria - Imagem 4" class="gallery-image"></li>
-                        <li><img src="assets/img/7.png" alt="Galeria - Imagem 5" class="gallery-image"></li>
-                        <li><img src="assets/img/8.png" alt="Galeria - Imagem 6" class="gallery-image"></li>
-                        <li><img src="assets/img/10.png" alt="Galeria - Imagem 7" class="gallery-image"></li>
-                        <li><img src="assets/img/11.png" alt="Galeria - Imagem 8" class="gallery-image"></li>
-                        <li><img src="assets/img/13.png" alt="Galeria - Imagem 9" class="gallery-image"></li>
-                        <li><img src="assets/img/14.png" alt="Galeria - Imagem 10" class="gallery-image"></li>
-                        <li><img src="assets/img/15.png" alt="Galeria - Imagem 11" class="gallery-image"></li>
-                        <li><img src="assets/img/17.png" alt="Galeria - Imagem 12" class="gallery-image"></li>
-                        <li><img src="assets/img/18.png" alt="Galeria - Imagem 13" class="gallery-image"></li>
+                        <li><img src="assets/img/2.png" alt="Galeria - Imagem 1" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/3.png" alt="Galeria - Imagem 2" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/5.png" alt="Galeria - Imagem 3" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/6.png" alt="Galeria - Imagem 4" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/7.png" alt="Galeria - Imagem 5" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/8.png" alt="Galeria - Imagem 6" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/10.png" alt="Galeria - Imagem 7" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/11.png" alt="Galeria - Imagem 8" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/13.png" alt="Galeria - Imagem 9" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/14.png" alt="Galeria - Imagem 10" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/15.png" alt="Galeria - Imagem 11" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/17.png" alt="Galeria - Imagem 12" class="gallery-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/18.png" alt="Galeria - Imagem 13" class="gallery-image" loading="lazy" decoding="async"></li>
                     </ul>
                 </div>
 
                 <!-- Thumbnail Gallery Slider -->
-                <div class="gallery-thumbnails">
+                <div class="gallery-thumbnails fade-slider-wrap">
+                    <span class="slider-loader" aria-hidden="true"></span>
                     <ul class="sliderY">
                         <li>
-                            <img src="assets/img/V1.jpg" alt="Vídeo 1" class="thumbnail-image">
+                            <img src="assets/img/V1.jpg" alt="Vídeo 1" class="thumbnail-image" loading="lazy" decoding="async">
                             <i class="fas fa-play-circle play-button"></i>
                         </li>
                         <li>
-                            <img src="assets/img/V2.jpg" alt="Vídeo 2" class="thumbnail-image">
+                            <img src="assets/img/V2.jpg" alt="Vídeo 2" class="thumbnail-image" loading="lazy" decoding="async">
                             <i class="fas fa-play-circle play-button"></i>
                         </li>
                         <li>
-                            <img src="assets/img/V3.jpg" alt="Vídeo 3" class="thumbnail-image">
+                            <img src="assets/img/V3.jpg" alt="Vídeo 3" class="thumbnail-image" loading="lazy" decoding="async">
                             <i class="fas fa-play-circle play-button"></i>
                         </li>
-                        <li><img src="assets/img/2.png" alt="Thumbnail 1" class="thumbnail-image"></li>
-                        <li><img src="assets/img/3.png" alt="Thumbnail 2" class="thumbnail-image"></li>
-                        <li><img src="assets/img/5.png" alt="Thumbnail 3" class="thumbnail-image"></li>
-                        <li><img src="assets/img/6.png" alt="Thumbnail 4" class="thumbnail-image"></li>
-                        <li><img src="assets/img/7.png" alt="Thumbnail 5" class="thumbnail-image"></li>
-                        <li><img src="assets/img/8.png" alt="Thumbnail 6" class="thumbnail-image"></li>
-                        <li><img src="assets/img/10.png" alt="Thumbnail 7" class="thumbnail-image"></li>
-                        <li><img src="assets/img/11.png" alt="Thumbnail 8" class="thumbnail-image"></li>
-                        <li><img src="assets/img/13.png" alt="Thumbnail 9" class="thumbnail-image"></li>
-                        <li><img src="assets/img/14.png" alt="Thumbnail 10" class="thumbnail-image"></li>
-                        <li><img src="assets/img/15.png" alt="Thumbnail 11" class="thumbnail-image"></li>
-                        <li><img src="assets/img/17.png" alt="Thumbnail 12" class="thumbnail-image"></li>
-                        <li><img src="assets/img/18.png" alt="Thumbnail 13" class="thumbnail-image"></li>
+                        <li><img src="assets/img/2.png" alt="Thumbnail 1" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/3.png" alt="Thumbnail 2" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/5.png" alt="Thumbnail 3" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/6.png" alt="Thumbnail 4" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/7.png" alt="Thumbnail 5" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/8.png" alt="Thumbnail 6" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/10.png" alt="Thumbnail 7" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/11.png" alt="Thumbnail 8" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/13.png" alt="Thumbnail 9" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/14.png" alt="Thumbnail 10" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/15.png" alt="Thumbnail 11" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/17.png" alt="Thumbnail 12" class="thumbnail-image" loading="lazy" decoding="async"></li>
+                        <li><img src="assets/img/18.png" alt="Thumbnail 13" class="thumbnail-image" loading="lazy" decoding="async"></li>
                     </ul>
                 </div>
             </div>
